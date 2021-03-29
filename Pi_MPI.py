@@ -53,4 +53,4 @@ pi_estimate = inv*4
 
 how_close = np.abs(np.pi - pi_estimate)
 
-print("Rank: ", comm.Get_rank(), "pi estimate:", pi_estimate, "with closeness:", how_close)
+print("Rank: ", comm.Get_rank(), "pi estimate:", pi_estimate, "with closeness:", how_close, "on a ratio calculated by the number of lengths", len(lengths))
