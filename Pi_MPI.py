@@ -1,13 +1,24 @@
 import numpy as np
+import argparse
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--points", "-pts", type=int, help="The number of points for a process to simulate in a parallelized Monte Carlo estimation of pi.")
+args = parser.parse_args()
+
+num_points = 1000
+
+if args.points:
+    #print("printing...",args.points)
+    num_points = args.points
+
 def generate_points(num_pairs):
     return np.random.uniform(high=1, size=(num_pairs,2))
 
-points = generate_points(1000)
+points = generate_points(num_points)
 
 def calc_lengths(pairs):
     return np.array([np.linalg.norm(i) for i in pairs])
