@@ -2,11 +2,12 @@ import numpy as np
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
 
 def generate_points(num_pairs):
     return np.random.uniform(high=1, size=(num_pairs,2))
 
-points = generate_points(10000)
+points = generate_points(1000)
 
 def calc_lengths(pairs):
     return np.array([np.linalg.norm(i) for i in pairs])
@@ -18,8 +19,27 @@ def ratio(lengths):
     #print(count)
     return count / len(lengths)
 
+def comm_length_data(lengths):
+    new_lengths = comm.gather(lengths, root=0)
+    if rank == 0:
+        print("root rank", rank, "gathering lengths from other ranks")
+        lengths = np.concatenate(new_lengths,axis=0)
+    else:
+        print("non-root rank", rank, "leaving lengths alone")
+        lengths = lengths
+        #print("rank 0 new_lengths size", new_lengths.size)
+        #print("rank 0 new_lengths", new_lengths)
+    return lengths
+
+
+gathered_lengths = comm_length_data(lengths)
+
+lengths = gathered_lengths
+
 inv = ratio(lengths)
 
 pi_estimate = inv*4
 
-print("Rank: ", comm.Get_rank(), "pi estimate:", pi_estimate)
+how_close = np.abs(np.pi - pi_estimate)
+
+print("Rank: ", comm.Get_rank(), "pi estimate:", pi_estimate, "with closeness:", how_close)
