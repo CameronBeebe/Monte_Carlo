@@ -1,0 +1,34 @@
+name: mpi_min
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - blas=2.11=openblas
+  - ca-certificates=2021.4.13=hecd8cb5_1
+  - certifi=2020.12.5=py38hecd8cb5_0
+  - libblas=3.8.0=11_openblas
+  - libcblas=3.8.0=11_openblas
+  - libcxx=10.0.0=1
+  - libffi=3.3=hb1e8313_2
+  - libgfortran=3.0.1=h93005f0_2
+  - liblapack=3.8.0=11_openblas
+  - liblapacke=3.8.0=11_openblas
+  - libopenblas=0.3.6=hdc02c5d_2
+  - mpi=1.0=mpich
+  - mpi4py=3.0.3=py38h77202c6_1
+  - mpich=3.3.2=hc856adb_0
+  - ncurses=6.2=h0a44026_1
+  - nomkl=3.0=0
+  - numpy=1.20.2=py38h0fa1045_0
+  - numpy-base=1.20.2=py38hbbe2e76_0
+  - openssl=1.1.1k=h9ed2024_0
+  - pip=21.1.1=py38hecd8cb5_0
+  - python=3.8.10=h88f2d9e_7
+  - readline=8.1=h9ed2024_0
+  - setuptools=52.0.0=py38hecd8cb5_0
+  - sqlite=3.35.4=hce871da_0
+  - tk=8.6.10=hb0a8c7a_0
+  - wheel=0.36.2=pyhd3eb1b0_0
+  - xz=5.2.5=h1de35cc_0
+  - zlib=1.2.11=h1de35cc_3
+prefix: /anaconda3/envs/mpi_min
