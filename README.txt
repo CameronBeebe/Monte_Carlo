@@ -1,4 +1,4 @@
-This is a short reference example for a common parallelization exercise using MPI.  It is a Monte Carlo estimation of Pi.
+This is a short reference example for a common parallelization exercise.  It is a Monte Carlo estimation of Pi.  One implementation is in MPI, and I am working on a similar example using Pyspark to compare.
 
 Pi_MPI.py can be run on the command line in the environment outlined in mpi_min.yaml using commands of the form "mpirun -n 4 python Pi_MPI.py -pts 1000".
 
