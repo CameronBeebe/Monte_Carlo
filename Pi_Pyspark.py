@@ -20,7 +20,7 @@ def generate_points(num_pairs):
 
 points = sc.parallelize(generate_points(num_points))
 
-print(points.take(1))
+# print(points.take(1))
 
 def calc_lengths(pair_RDD):
     return np.array([np.linalg.norm(i) for i in pair_RDD.collect()])
