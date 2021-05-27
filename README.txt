@@ -6,6 +6,6 @@ Pi_Pyspark.py can be run on the command line using commands of the form "python 
 
 TO DO:
 
-1.  Implement the same algorithm and functionality with pyspark.  (Figure out how to have ranks/workers spit out confirmations of local work being done)
+1.  Figure out how to have Pyspark ranks/workers spit out confirmations of local work being done like in MPI.
 
 2.  Compare.
