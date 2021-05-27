@@ -22,6 +22,9 @@ points = sc.parallelize(generate_points(num_points))
 
 # print(points.take(1))
 
+# The main change from the MPI script (for now) is that the calc_lengths function must operate on a RDD object.
+# This can probably be improved to a generator, but the simple data works fine this way.
+# The rest of the code is the same as the MPI example.
 def calc_lengths(pair_RDD):
     return np.array([np.linalg.norm(i) for i in pair_RDD.collect()])
 
