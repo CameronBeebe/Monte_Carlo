@@ -3,6 +3,13 @@ import numpy as np
 import argparse
 
 sc = pyspark.SparkContext('local[*]')
+tc = pyspark.TaskContext()
+
+print('default parallelism: {}'.format(sc.defaultParallelism))
+
+# RDD will be partitioned according to sc.defaultParallelism
+num_ranks = sc.defaultParallelism
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--points", "-pts", type=int, help="The number of points for a process to simulate in a parallelized Monte Carlo estimation of pi.")
@@ -13,12 +20,18 @@ num_points = 1000
 if args.points:
     #print("printing...",args.points)
     num_points = args.points
-    
-
+        
 def generate_points(num_pairs):
+    print('generating points...')
     return np.random.uniform(high=1, size=(num_pairs,2))
 
-points = sc.parallelize(generate_points(num_points))
+
+# Multiply the number of points by number of ranks (cores) for RDD of points.
+points = sc.parallelize(generate_points(num_ranks * num_points))
+
+num_partitions = points.getNumPartitions()
+
+print('Check number of partitions are equal to the default parallelization (number of cores): {} == {}, {}'.format(num_partitions, num_ranks, num_partitions == num_ranks))
 
 # print(points.take(1))
 
@@ -42,3 +55,5 @@ pi_estimate = inv*4
 how_close = np.abs(np.pi - pi_estimate)
 
 print("pi estimate:", pi_estimate, "with closeness:", how_close, "on a ratio calculated by the number of lengths", len(lengths))
+
+sc.stop()
