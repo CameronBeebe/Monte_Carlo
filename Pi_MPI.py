@@ -16,6 +16,7 @@ if args.points:
     num_points = args.points
 
 def generate_points(num_pairs):
+    print('generating points...')
     return np.random.uniform(high=1, size=(num_pairs,2))
 
 points = generate_points(num_points)
