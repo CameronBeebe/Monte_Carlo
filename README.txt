@@ -4,7 +4,7 @@ Code is not optimal, but tries to be clear and demonstrative (can be improved st
 
 Pi_MPI.py can be run on the command line in the environment outlined in mpi_min.yaml using commands of the form "mpirun -n 4 python Pi_MPI.py -pts 1000".
 
-Pi_Pyspark.py can be run on the command line using commands of the form "python Pi_Pyspark.py -pts 1000".
+Pi_Pyspark.py can be run on the command line using commands of the form "python Pi_Pyspark.py -pts 1000 -procs 4".
 
 TO DO:
 
