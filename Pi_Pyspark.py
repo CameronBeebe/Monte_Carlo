@@ -2,7 +2,26 @@ import pyspark
 import numpy as np
 import argparse
 
-sc = pyspark.SparkContext('local[*]')
+num_points = 1000
+num_processes = 4
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--points", "-pts", type=int, help="The number of points for a process to simulate in a parallelized Monte Carlo estimation of pi.")
+parser.add_argument("--processes", "-procs", type=int, help="The number of processes to initialize the SparkContext with.") 
+args = parser.parse_args()
+
+if args.points:
+    #print("printing...",args.points)
+    num_points = args.points
+
+if args.processes:
+    num_processes = args.processes
+
+
+
+# Take processes from command line parser.
+sc = pyspark.SparkContext('local[{}]'.format(num_processes))
 tc = pyspark.TaskContext()
 
 print('default parallelism: {}'.format(sc.defaultParallelism))
@@ -11,16 +30,6 @@ print('default parallelism: {}'.format(sc.defaultParallelism))
 num_ranks = sc.defaultParallelism
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--points", "-pts", type=int, help="The number of points for a process to simulate in a parallelized Monte Carlo estimation of pi.")
-args = parser.parse_args()
-
-num_points = 1000
-
-if args.points:
-    #print("printing...",args.points)
-    num_points = args.points
-        
 def generate_points(num_pairs):
     print('generating points...')
     return np.random.uniform(high=1, size=(num_pairs,2))
