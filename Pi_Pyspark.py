@@ -22,7 +22,7 @@ if args.processes:
 
 # Take processes from command line parser.
 sc = pyspark.SparkContext('local[{}]'.format(num_processes))
-tc = pyspark.TaskContext()
+#tc = pyspark.TaskContext()
 
 print('default parallelism: {}'.format(sc.defaultParallelism))
 
