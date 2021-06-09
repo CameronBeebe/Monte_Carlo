@@ -20,13 +20,13 @@ if args.processes:
 
 
 
-# Take processes from command line parser.
+# CB: Take processes from command line parser.
 sc = pyspark.SparkContext('local[{}]'.format(num_processes))
 #tc = pyspark.TaskContext()
 
 print('default parallelism: {}'.format(sc.defaultParallelism))
 
-# RDD will be partitioned according to sc.defaultParallelism
+# CB: RDD will be partitioned according to sc.defaultParallelism
 num_ranks = sc.defaultParallelism
 
 
@@ -35,7 +35,7 @@ def generate_points(num_pairs):
     return np.random.uniform(high=1, size=(num_pairs,2))
 
 
-# Multiply the number of points by number of ranks (cores) for RDD of points.
+# CB: Multiply the number of points by number of ranks (cores) for RDD of points.
 points = sc.parallelize(generate_points(num_ranks * num_points))
 
 num_partitions = points.getNumPartitions()
@@ -44,7 +44,7 @@ print('Check number of partitions are equal to the default parallelization (numb
 
 # print(points.take(1))
 
-# The main change from the MPI script (for now) is that the calc_lengths function must operate on a RDD object.
+# CB: The main change from the MPI script (for now) is that the calc_lengths function must operate on a RDD object.
 # This can probably be improved to a generator, but the simple data works fine this way.
 # The rest of the code is the same as the MPI example.
 def calc_lengths(pair_RDD):
