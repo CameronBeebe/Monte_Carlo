@@ -1,4 +1,4 @@
-This is a short reference example for a common parallelization exercise.  It is a Monte Carlo estimation of Pi.  One implementation is in MPI, the other is in Pyspark to compare.
+This is a short reference example for a common parallelization exercise.  It is a Monte Carlo estimation of Pi.  One implementation is in MPI, the other is in Pyspark to compare.  The scripts should be run in the environment created from the .yaml or requirements.txt files.
 
 Code is not optimal, but tries to be clear and demonstrative (can be improved still).
 
