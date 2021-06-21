@@ -1,6 +1,6 @@
-This is a short reference example for a common parallelization exercise.  It is a Monte Carlo estimation of Pi.  One implementation is in MPI, the other is in Pyspark to compare.  The scripts should be run in the environment created from the .yaml or requirements.txt files.
+This is a short reference example for a common parallelization exercise.  It is a Monte Carlo estimation of Pi.  One implementation is in MPI, the other is in Pyspark to compare.  The scripts should be run in the environment created from the .yaml or requirements.txt files, or another suitable environment.  
 
-Code is not optimal, but tries to be clear and demonstrative (can be improved still).
+Code is not optimal, but tries to be clear and demonstrative (can be improved still).  
 
 Pi_MPI.py can be run on the command line in the environment outlined in mpi_min.yaml using commands of the form "mpirun -n 4 python Pi_MPI.py -pts 1000".
 
